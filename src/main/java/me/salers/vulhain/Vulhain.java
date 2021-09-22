@@ -4,7 +4,7 @@ package me.salers.vulhain;
 import io.github.retrooper.packetevents.PacketEvents;
 import io.github.retrooper.packetevents.utils.server.ServerVersion;
 import lombok.Getter;
-import me.salers.vulhain.data.PlayerDataManager;
+import me.salers.vulhain.manager.PlayerDataManager;
 import me.salers.vulhain.listener.BukkitListener;
 import me.salers.vulhain.listener.PacketListener;
 import org.bukkit.Bukkit;

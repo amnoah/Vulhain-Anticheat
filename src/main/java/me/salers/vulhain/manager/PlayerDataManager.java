@@ -1,7 +1,8 @@
-package me.salers.vulhain.data;
+package me.salers.vulhain.manager;
 
 
 import lombok.Getter;
+import me.salers.vulhain.data.PlayerData;
 
 import java.util.Map;
 import java.util.UUID;
@@ -12,7 +13,9 @@ public class PlayerDataManager {
     @Getter
     private static PlayerDataManager instance = new PlayerDataManager();
 
-    /** Data cache **/
+    /**
+     * Data cache
+     **/
     private final Map<UUID, PlayerData> uuidPlayerDataMap = new ConcurrentHashMap<>();
 
     /**
@@ -33,7 +36,7 @@ public class PlayerDataManager {
      */
 
     public void add(UUID uuid) {
-        this.uuidPlayerDataMap.put(uuid,new PlayerData(uuid));
+        this.uuidPlayerDataMap.put(uuid, new PlayerData(uuid));
     }
 
     /**
@@ -43,10 +46,8 @@ public class PlayerDataManager {
      */
 
     public void remove(UUID uuid) {
-        this.uuidPlayerDataMap.remove(uuid,this.getPlayerData(uuid));
+        this.uuidPlayerDataMap.remove(uuid, this.getPlayerData(uuid));
     }
-
-
 
 
 }

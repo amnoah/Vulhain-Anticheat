@@ -1,14 +1,13 @@
-package me.salers.vulhain.check.impl.movement;
+package me.salers.vulhain.check.impl.movement.fly;
 
 import me.salers.vulhain.check.Check;
 import me.salers.vulhain.data.PlayerData;
 import me.salers.vulhain.processor.MovementProcessor;
 import net.minecraft.server.v1_8_R3.PacketPlayInFlying;
 
+public class FlyB extends Check {
 
-public class FlyA extends Check {
-
-    public FlyA(String name, String category, String type, boolean experimental) {
+    public FlyB(String name, String category, String type, boolean experimental) {
         super(name, category, type, experimental);
     }
 
@@ -21,27 +20,22 @@ public class FlyA extends Check {
             final double deltaY = movementProcessor.getDeltaY();
             final double lastDeltaY = movementProcessor.getLastDeltaY();
 
-            final double airDrag = 0.98F;
-            final double gravity = 0.08F;
-
-            final double prediction = (lastDeltaY * airDrag) - gravity;
-            final double fixedPrediction = Math.abs(prediction) < 0.005 ? 0 : Math.abs(prediction);
-
-            final double difference = Math.abs(deltaY - fixedPrediction);
+            final double accelerationY = Math.abs(deltaY - lastDeltaY);
 
             final boolean exempt = playerData.getBukkitPlayerFromUUID().isOnGround() ||
                     movementProcessor.getAirTicks() < 11 ||
                     movementProcessor.isInLiquid() ||
                     movementProcessor.isOnClimbable() ||
                     movementProcessor.isInWeb() ||
-                    playerData.getBukkitPlayerFromUUID().getFallDistance() > 8.0D;
+                    playerData.getBukkitPlayerFromUUID().getFallDistance() > 28.0D;
 
-
-            if (difference > 0.01 && !exempt) {
+            if (accelerationY < 0.001D && !exempt) {
                 if (++buffer > getMaxBuffer()) {
-                    flag(playerData, "diff=" + difference);
+                    flag(playerData, "accel=" + accelerationY);
                 }
             } else if (buffer > 0) buffer -= 0.05D;
         }
+
     }
 }
+

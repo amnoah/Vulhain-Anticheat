@@ -18,7 +18,6 @@ public class BukkitListener implements Listener {
     }
 
 
-
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         //removing the player's data from the cache

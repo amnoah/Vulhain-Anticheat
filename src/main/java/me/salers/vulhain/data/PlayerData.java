@@ -3,7 +3,7 @@ package me.salers.vulhain.data;
 
 import lombok.Data;
 import me.salers.vulhain.check.Check;
-import me.salers.vulhain.check.CheckManager;
+import me.salers.vulhain.manager.CheckManager;
 import me.salers.vulhain.processor.CombatProcessor;
 import me.salers.vulhain.processor.MovementProcessor;
 import me.salers.vulhain.processor.RotationProcessor;

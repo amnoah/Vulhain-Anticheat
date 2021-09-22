@@ -1,4 +1,4 @@
-package me.salers.vulhain.check.impl.movement;
+package me.salers.vulhain.check.impl.movement.fly;
 
 import me.salers.vulhain.check.Check;
 import me.salers.vulhain.data.PlayerData;
