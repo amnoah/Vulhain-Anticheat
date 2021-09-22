@@ -6,7 +6,7 @@ vulhain:
   # %exp% if the check is experimental or not
   # %probability% the chance for the player to cheat
   # %player% the presumed cheater
-  alert-message: "&cVulhain &7/ &d%player% &7flagged &7%exp% &d%check% &7(&d%type%&7)&7(&c%vl/%maxvl%&7)"
+  alert-message: "&cVulhain &7/ &d%player% &7flagged &7%exp% &d%check% &7(&dType %type%&7)&7 (&c%vl%/%maxvl%&7)"
   punish-command: "kick %player% &cVulhain&7/ Cheating"
 checks:
   movement:

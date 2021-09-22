@@ -61,22 +61,22 @@ public abstract class Check {
                 .getString("vulhain.alert-message").replaceAll("%player%", data.getBukkitPlayerFromUUID().getName()).
                 replaceAll("%check%", this.name).replaceAll("%type%", String.valueOf(this.type)).
                 replaceAll("%exp%", "&7(Experimental)").replaceAll("%vl%",
-                        String.valueOf(vl)).replaceAll("%probabilty%", String.valueOf(probabilty))));
+                        String.valueOf(vl)).replaceAll("%maxvl%", String.valueOf(getMaxVL()))));
 
         TextComponent toSend = new TextComponent(ChatColor.translateAlternateColorCodes('&', Vulhain.getInstance().getConfig()
                 .getString("vulhain.alert-message").replaceAll("%player%", data.getBukkitPlayerFromUUID().getName()).
                 replaceAll("%check%", this.name).replaceAll("%type%", String.valueOf(this.type)).
                 replaceAll("%exp%", "").replaceAll("%vl%",
-                        String.valueOf(vl)).replaceAll("%probabilty%", String.valueOf(probabilty))));
+                        String.valueOf(vl)).replaceAll("%maxvl%", String.valueOf(getMaxVL()))));
 
 
         toSend.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.
                 translateAlternateColorCodes('&', "&8[&c&lVulhain&8]\n" + "&cInfo:&7 " + moreInfo
-                        + "\n&cExperimental:&7 " + experimental + "\n&cProbability: &7" + probabilty +
+                        + "\n&cExperimental:&7 " + experimental + "\n&cMaxVL: &7" + getMaxVL() +
                         "\n\n&cClick to teleport")).create()));
         toSendExp.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.
                 translateAlternateColorCodes('&', "&8[&c&lVulhain&8]\n" + "&cInfo:&7 " + moreInfo
-                        + "\n&cExperimental:&7 " + experimental + "\n&cProbability: &7" + probabilty +
+                        + "\n&cExperimental:&7 " + experimental + "\n&cMaxVL: &7" + getMaxVL() +
                         "\n\n&cClick to teleport")).create()));
         toSend.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "tp " + data.getBukkitPlayerFromUUID().getName()));
         toSendExp.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + data.getBukkitPlayerFromUUID().getName()));
