@@ -129,7 +129,7 @@ public abstract class Check {
                 getConfig().getString("vulhain.punish-command").replaceAll("%player%", data.getBukkitPlayerFromUUID().getName()).
                 replaceAll("%check%", this.name).replaceAll("%type%", String.valueOf(this.type)).
                 replaceAll("%exp%", "").replaceAll("%vl%",
-                        String.valueOf(vl)).replaceAll("%probabilty%", String.valueOf(probabilty)));
+                        String.valueOf(vl)).replaceAll("%maxvl%", String.valueOf(getMaxVL())));
         Bukkit.getScheduler().runTask(Vulhain.getInstance(), () -> Bukkit.dispatchCommand(
                 Bukkit.getConsoleSender(), toDispatch));
         data.getBukkitPlayerFromUUID().getWorld().strikeLightningEffect(data.getBukkitPlayerFromUUID().getLocation());
