@@ -1,12 +1,9 @@
 package me.salers.vulhain.check.impl.movement;
 
-import io.github.retrooper.packetevents.packetwrappers.NMSPacket;
 import me.salers.vulhain.check.Check;
-import me.salers.vulhain.check.CheckData;
 import me.salers.vulhain.data.PlayerData;
 import me.salers.vulhain.processor.MovementProcessor;
 import net.minecraft.server.v1_8_R3.PacketPlayInFlying;
-import org.bukkit.Bukkit;
 
 
 public class FlyA extends Check {
@@ -17,7 +14,7 @@ public class FlyA extends Check {
 
     @Override
     public void onPacket(Object packet, PlayerData playerData) {
-        if(packet instanceof PacketPlayInFlying) {
+        if (packet instanceof PacketPlayInFlying) {
 
             final MovementProcessor movementProcessor = playerData.getMovementProcessor();
 
@@ -40,14 +37,11 @@ public class FlyA extends Check {
                     playerData.getBukkitPlayerFromUUID().getFallDistance() > 8.0D;
 
 
-
-
-
-            if(difference > 0.01 && !exempt) {
-                if(++buffer > getMaxBuffer()) {
-                    flag(playerData,"diff=" + difference);
+            if (difference > 0.01 && !exempt) {
+                if (++buffer > getMaxBuffer()) {
+                    flag(playerData, "diff=" + difference);
                 }
-            } else if(buffer > 0) buffer -= 0.05D;
+            } else if (buffer > 0) buffer -= 0.05D;
         }
     }
 }

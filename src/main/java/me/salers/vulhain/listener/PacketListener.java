@@ -9,7 +9,6 @@ import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.Wrapped
 import me.salers.vulhain.Vulhain;
 import me.salers.vulhain.check.Check;
 import me.salers.vulhain.data.PlayerData;
-import org.bukkit.Bukkit;
 
 public class PacketListener extends PacketListenerDynamic {
 
@@ -18,22 +17,22 @@ public class PacketListener extends PacketListenerDynamic {
     public void onPacketPlayReceive(PacketPlayReceiveEvent event) {
         final PlayerData data = Vulhain.getInstance().getPlayerDataManager().getPlayerData(event.getPlayer().getUniqueId());
 
-        if(data == null) return;
+        if (data == null) return;
 
-       if(PacketType.Play.Client.Util.isInstanceOfFlying(event.getPacketId())) {
-           final WrappedPacketInFlying wrapped = new WrappedPacketInFlying(event.getNMSPacket());
-           data.getRotationProcessor().handleRotation(wrapped);
-           data.getMovementProcessor().handleMove(wrapped);
-       } else if(event.getPacketId() == PacketType.Play.Client.USE_ENTITY) {
-           final WrappedPacketInUseEntity wrappedPacketInUseEntity = new WrappedPacketInUseEntity(event.getNMSPacket());
-           data.getCombatProcessor().handleCombat(wrappedPacketInUseEntity);
-       }
+        if (PacketType.Play.Client.Util.isInstanceOfFlying(event.getPacketId())) {
+            final WrappedPacketInFlying wrapped = new WrappedPacketInFlying(event.getNMSPacket());
+            data.getRotationProcessor().handleRotation(wrapped);
+            data.getMovementProcessor().handleMove(wrapped);
+        } else if (event.getPacketId() == PacketType.Play.Client.USE_ENTITY) {
+            final WrappedPacketInUseEntity wrappedPacketInUseEntity = new WrappedPacketInUseEntity(event.getNMSPacket());
+            data.getCombatProcessor().handleCombat(wrappedPacketInUseEntity);
+        }
 
-       for(Check checks : data.getCheckManager().getChecks()) {
-           if(checks.isEnabled()) {
-               checks.onPacket(event.getNMSPacket().getRawNMSPacket(), data);
-           }
-       }
+        for (Check checks : data.getCheckManager().getChecks()) {
+            if (checks.isEnabled()) {
+                checks.onPacket(event.getNMSPacket().getRawNMSPacket(), data);
+            }
+        }
 
     }
 }

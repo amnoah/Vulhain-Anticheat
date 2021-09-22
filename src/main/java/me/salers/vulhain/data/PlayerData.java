@@ -1,12 +1,12 @@
 package me.salers.vulhain.data;
 
 
+import lombok.Data;
 import me.salers.vulhain.check.Check;
 import me.salers.vulhain.check.CheckManager;
 import me.salers.vulhain.processor.CombatProcessor;
 import me.salers.vulhain.processor.MovementProcessor;
 import me.salers.vulhain.processor.RotationProcessor;
-import lombok.Data;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -21,7 +21,6 @@ public class PlayerData {
 
     private RotationProcessor rotationProcessor;
     private CheckManager checkManager;
-
 
 
     private UUID uuid;

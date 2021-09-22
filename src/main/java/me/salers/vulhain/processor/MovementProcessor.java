@@ -2,16 +2,16 @@ package me.salers.vulhain.processor;
 
 
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
+import lombok.Data;
 import me.salers.vulhain.data.PlayerData;
 import me.salers.vulhain.utils.LocationUtils;
-import lombok.Data;
 
 @Data
 public class MovementProcessor {
 
     private double x, y, z, lastX, lastY, lastZ,
             deltaX, deltaY, deltaZ, deltaXZ, lastDeltaX, lastDeltaY, lastDeltaZ, lastDeltaXZ;
-    private PlayerData data ;
+    private PlayerData data;
     private int airTicks, edgeBlockTicks;
     private boolean isNearBoat, isInLiquid, isInWeb, isOnClimbable, isAtTheEdgeOfABlock;
 
@@ -42,9 +42,6 @@ public class MovementProcessor {
             deltaXZ = Math.hypot(deltaX, deltaZ);
 
             //END
-
-
-
 
 
             /** Getting since how many ticks player is in air **/

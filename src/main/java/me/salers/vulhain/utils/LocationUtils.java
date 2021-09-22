@@ -13,7 +13,6 @@ public class LocationUtils {
 
 
     /**
-     *
      * @param loc the location of the block to get
      * @return the block at the location
      */

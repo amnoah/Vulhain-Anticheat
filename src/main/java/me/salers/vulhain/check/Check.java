@@ -1,11 +1,9 @@
 package me.salers.vulhain.check;
 
-import io.github.retrooper.packetevents.packetwrappers.NMSPacket;
-import me.salers.vulhain.Vulhain;
-
-import me.salers.vulhain.data.PlayerData;
 import lombok.Getter;
 import lombok.Setter;
+import me.salers.vulhain.Vulhain;
+import me.salers.vulhain.data.PlayerData;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -19,22 +17,13 @@ import org.bukkit.entity.Player;
 @Setter
 public abstract class Check {
 
-    private String name ;
-    private String category;
-    private String type ;
-    private int vl, probabilty, delay;
-    private boolean experimental ;
     public double buffer = 0;
+    private String name;
+    private String category;
+    private String type;
+    private int vl, probabilty, delay;
+    private boolean experimental;
 
-
-    /**
-     * Method for doing checks
-     *
-     * @param playerData the data reliated to the check
-     * @param packet    the custom packet based on packetevents
-     **/
-
-    public abstract void onPacket(Object packet, PlayerData playerData);
 
     public Check(String name, String category, String type, boolean experimental) {
         this.name = name;
@@ -42,6 +31,15 @@ public abstract class Check {
         this.type = type;
         this.experimental = experimental;
     }
+
+    /**
+     * Method for doing checks
+     *
+     * @param playerData the data reliated to the check
+     * @param packet     the custom packet based on packetevents
+     **/
+
+    public abstract void onPacket(Object packet, PlayerData playerData);
 
     /**
      * Method for sending alerts
@@ -59,17 +57,16 @@ public abstract class Check {
                 data.getBukkitPlayerFromUUID().getGameMode() == GameMode.CREATIVE) return;
 
 
-
         TextComponent toSendExp = new TextComponent(ChatColor.translateAlternateColorCodes('&', Vulhain.getInstance().getConfig()
                 .getString("vulhain.alert-message").replaceAll("%player%", data.getBukkitPlayerFromUUID().getName()).
-                        replaceAll("%check%", this.name).replaceAll("%type%", String.valueOf(this.type)).
-                        replaceAll("%exp%", "&7(Experimental)").replaceAll("%vl%",
+                replaceAll("%check%", this.name).replaceAll("%type%", String.valueOf(this.type)).
+                replaceAll("%exp%", "&7(Experimental)").replaceAll("%vl%",
                         String.valueOf(vl)).replaceAll("%probabilty%", String.valueOf(probabilty))));
 
         TextComponent toSend = new TextComponent(ChatColor.translateAlternateColorCodes('&', Vulhain.getInstance().getConfig()
                 .getString("vulhain.alert-message").replaceAll("%player%", data.getBukkitPlayerFromUUID().getName()).
-                        replaceAll("%check%", this.name).replaceAll("%type%", String.valueOf(this.type)).
-                        replaceAll("%exp%", "").replaceAll("%vl%",
+                replaceAll("%check%", this.name).replaceAll("%type%", String.valueOf(this.type)).
+                replaceAll("%exp%", "").replaceAll("%vl%",
                         String.valueOf(vl)).replaceAll("%probabilty%", String.valueOf(probabilty))));
 
 
@@ -83,8 +80,6 @@ public abstract class Check {
                         "\n\n&cClick to teleport")).create()));
         toSend.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "tp " + data.getBukkitPlayerFromUUID().getName()));
         toSendExp.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + data.getBukkitPlayerFromUUID().getName()));
-
-
 
 
         if (this.probabilty > 5) {
@@ -117,7 +112,6 @@ public abstract class Check {
     }
 
 
-
     /**
      * @param toVerbose the thing to broadcast
      */
@@ -130,38 +124,37 @@ public abstract class Check {
      * @param data the player to punish
      */
     protected void punish(PlayerData data) {
-        if(!isPunish()) return;
-            String toDispatch = ChatColor.translateAlternateColorCodes('&', Vulhain.getInstance().
-                    getConfig().getString("vulhain.punish-command").replaceAll("%player%", data.getBukkitPlayerFromUUID().getName()).
-                    replaceAll("%check%", this.name).replaceAll("%type%", String.valueOf(this.type)).
-                    replaceAll("%exp%", "").replaceAll("%vl%",
-                    String.valueOf(vl)).replaceAll("%probabilty%", String.valueOf(probabilty)));
-            Bukkit.getScheduler().runTask(Vulhain.getInstance(),() -> Bukkit.dispatchCommand(
-                    Bukkit.getConsoleSender(),toDispatch));
-            data.getBukkitPlayerFromUUID().getWorld().strikeLightningEffect(data.getBukkitPlayerFromUUID().getLocation());
-            this.vl = this.probabilty = this.delay = 0;
-
+        if (!isPunish()) return;
+        String toDispatch = ChatColor.translateAlternateColorCodes('&', Vulhain.getInstance().
+                getConfig().getString("vulhain.punish-command").replaceAll("%player%", data.getBukkitPlayerFromUUID().getName()).
+                replaceAll("%check%", this.name).replaceAll("%type%", String.valueOf(this.type)).
+                replaceAll("%exp%", "").replaceAll("%vl%",
+                        String.valueOf(vl)).replaceAll("%probabilty%", String.valueOf(probabilty)));
+        Bukkit.getScheduler().runTask(Vulhain.getInstance(), () -> Bukkit.dispatchCommand(
+                Bukkit.getConsoleSender(), toDispatch));
+        data.getBukkitPlayerFromUUID().getWorld().strikeLightningEffect(data.getBukkitPlayerFromUUID().getLocation());
+        this.vl = this.probabilty = this.delay = 0;
 
 
     }
 
     public double getMaxBuffer() {
-        return Vulhain.getInstance().getConfig().getInt("checks." + category +"." + name.toLowerCase() +"."
+        return Vulhain.getInstance().getConfig().getInt("checks." + category + "." + name.toLowerCase() + "."
                 + type.toLowerCase() + ".buffer");
     }
 
     public boolean isEnabled() {
-        return Vulhain.getInstance().getConfig().getBoolean("checks." + category +"." + name.toLowerCase() +"." +
+        return Vulhain.getInstance().getConfig().getBoolean("checks." + category + "." + name.toLowerCase() + "." +
                 type.toLowerCase() + ".enabled");
     }
 
     public boolean isPunish() {
-        return Vulhain.getInstance().getConfig().getBoolean("checks." + category +"." + name.toLowerCase() +"." +
+        return Vulhain.getInstance().getConfig().getBoolean("checks." + category + "." + name.toLowerCase() + "." +
                 type + ".punish");
     }
 
     public double getMaxVL() {
-        return Vulhain.getInstance().getConfig().getInt("checks." + category +"." + name.toLowerCase() +"."
+        return Vulhain.getInstance().getConfig().getInt("checks." + category + "." + name.toLowerCase() + "."
                 + type + ".max-vl");
     }
 }

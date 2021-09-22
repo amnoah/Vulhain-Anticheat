@@ -3,10 +3,10 @@ package me.salers.vulhain;
 
 import io.github.retrooper.packetevents.PacketEvents;
 import io.github.retrooper.packetevents.utils.server.ServerVersion;
+import lombok.Getter;
 import me.salers.vulhain.data.PlayerDataManager;
 import me.salers.vulhain.listener.BukkitListener;
 import me.salers.vulhain.listener.PacketListener;
-import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -49,13 +49,12 @@ public class Vulhain extends JavaPlugin {
     }
 
 
-
     /**
      * Loading all listeners that we will need
      **/
 
     private void loadEvents() {
-        Bukkit.getPluginManager().registerEvents(new BukkitListener(),this);
+        Bukkit.getPluginManager().registerEvents(new BukkitListener(), this);
         new PacketListener();
     }
 }

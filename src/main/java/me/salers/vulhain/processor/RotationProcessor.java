@@ -2,8 +2,8 @@ package me.salers.vulhain.processor;
 
 
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
-import me.salers.vulhain.data.PlayerData;
 import lombok.Data;
+import me.salers.vulhain.data.PlayerData;
 
 @Data
 public class RotationProcessor {
@@ -17,7 +17,7 @@ public class RotationProcessor {
 
 
     public RotationProcessor(PlayerData data) {
-       this.data =data;
+        this.data = data;
     }
 
     public void handleRotation(WrappedPacketInFlying wrapper) {

@@ -12,10 +12,10 @@ checks:
   movement:
     fly:
       a:
-       enabled: true
-       max-vl: 10
-       buffer: 2
-       punish: false
+        enabled: true
+        max-vl: 10
+        buffer: 2
+        punish: false
       b:
         enabled: true
         max-vl: 10

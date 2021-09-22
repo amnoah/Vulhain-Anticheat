@@ -27,11 +27,11 @@ public class FlyC extends Check {
                     movementProcessor.isInWeb() ||
                     playerData.getBukkitPlayerFromUUID().getFallDistance() > 28.0D;
 
-            if(deltaY > lastDeltaY && !exempt) {
-                if(++buffer > getMaxBuffer()) {
-                    flag(playerData,"current=" + deltaY + " last=" + lastDeltaY);
+            if (deltaY > lastDeltaY && !exempt) {
+                if (++buffer > getMaxBuffer()) {
+                    flag(playerData, "current=" + deltaY + " last=" + lastDeltaY);
                 }
-            } else if(buffer > 0) buffer -= 0.05D;
+            } else if (buffer > 0) buffer -= 0.05D;
 
         }
     }

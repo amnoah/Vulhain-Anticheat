@@ -13,7 +13,7 @@ public class FlyB extends Check {
 
     @Override
     public void onPacket(Object packet, PlayerData playerData) {
-        if(packet instanceof PacketPlayInFlying) {
+        if (packet instanceof PacketPlayInFlying) {
 
             final MovementProcessor movementProcessor = playerData.getMovementProcessor();
 
@@ -29,13 +29,13 @@ public class FlyB extends Check {
                     movementProcessor.isInWeb() ||
                     playerData.getBukkitPlayerFromUUID().getFallDistance() > 28.0D;
 
-            if(accelerationY < 0.001D && !exempt) {
-                if(++buffer > getMaxBuffer()) {
-                    flag(playerData,"accel=" + accelerationY);
+            if (accelerationY < 0.001D && !exempt) {
+                if (++buffer > getMaxBuffer()) {
+                    flag(playerData, "accel=" + accelerationY);
                 }
-            } else if(buffer > 0) buffer -= 0.05D;
+            } else if (buffer > 0) buffer -= 0.05D;
         }
 
-        }
     }
+}
 
