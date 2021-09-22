@@ -1,0 +1,5 @@
+name: Vulhain
+author: SalersFR
+version: 1.0
+main: me.salers.vulhain.Vulhain
+load: STARTUP

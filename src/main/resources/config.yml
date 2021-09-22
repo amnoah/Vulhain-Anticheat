@@ -1,0 +1,23 @@
+vulhain:
+  # Placeholders:
+  # %vl%  the current check vl
+  # %check% the check for what the player failed
+  # %type%  the type of the check for what the player failed
+  # %exp% if the check is experimental or not
+  # %probability% the chance for the player to cheat
+  # %player% the presumed cheater
+  alert-message: "&cVulhain &7/ &f%player% &7flagged &7%exp% &f%check% &7(%type%)&8 (&cvl: &d%vl% &cProbabilty:&d %probabilty%&7&8)"
+  punish-command: "kick %player% &cVulhain&7/ Cheating"
+checks:
+  movement:
+    fly:
+      a:
+       enabled: true
+       max-vl: 10
+       buffer: 2
+       punish: false
+      b:
+        enabled: true
+        max-vl: 10
+        buffer: 4
+        punish: false
