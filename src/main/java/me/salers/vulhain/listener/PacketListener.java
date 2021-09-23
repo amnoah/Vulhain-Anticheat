@@ -4,6 +4,7 @@ package me.salers.vulhain.listener;
 import io.github.retrooper.packetevents.event.PacketListenerDynamic;
 import io.github.retrooper.packetevents.event.impl.PacketPlayReceiveEvent;
 import io.github.retrooper.packetevents.packettype.PacketType;
+import io.github.retrooper.packetevents.packetwrappers.play.in.entityaction.WrappedPacketInEntityAction;
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
 import me.salers.vulhain.Vulhain;
@@ -26,6 +27,9 @@ public class PacketListener extends PacketListenerDynamic {
         } else if (event.getPacketId() == PacketType.Play.Client.USE_ENTITY) {
             final WrappedPacketInUseEntity wrappedPacketInUseEntity = new WrappedPacketInUseEntity(event.getNMSPacket());
             data.getCombatProcessor().handleCombat(wrappedPacketInUseEntity);
+        } else if(event.getPacketId() == PacketType.Play.Client.ENTITY_ACTION) {
+            final WrappedPacketInEntityAction wrapper = new WrappedPacketInEntityAction(event.getNMSPacket());
+            data.getActionProcessor().handleAction(wrapper);
         }
 
         for (Check checks : data.getCheckManager().getChecks()) {

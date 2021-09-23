@@ -13,7 +13,7 @@ public class MovementProcessor {
             deltaX, deltaY, deltaZ, deltaXZ, lastDeltaX, lastDeltaY, lastDeltaZ, lastDeltaXZ;
     private PlayerData data;
     private int airTicks, edgeBlockTicks;
-    private boolean isNearBoat, isInLiquid, isInWeb, isOnClimbable, isAtTheEdgeOfABlock;
+    private boolean isNearBoat, isInLiquid, isInWeb, isOnClimbable, isAtTheEdgeOfABlock,ground;
 
     public MovementProcessor(PlayerData data) {
         this.data = data;
@@ -59,6 +59,7 @@ public class MovementProcessor {
             isInLiquid = LocationUtils.isInLiquid(data.getBukkitPlayerFromUUID());
             isInWeb = LocationUtils.isCollidingWithWeb(data.getBukkitPlayerFromUUID());
             isOnClimbable = LocationUtils.isCollidingWithClimbable(data.getBukkitPlayerFromUUID());
+            ground = wrapper.isOnGround();
 
 
         }

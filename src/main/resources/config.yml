@@ -27,12 +27,23 @@ checks:
         max-vl: 10
         buffer: 2
         punish: false
+    speed:
+      a:
+        enabled: true
+        max-vl: 10
+        buffer: 0
+        punish: false
   combat:
     killaura:
       a:
         enabled: true
         max-vl: 10
         buffer: 6
+        punish: false
+      b:
+        enabled: true
+        max-vl: 10
+        buffer: 4
         punish: false
     aim:
       a:
