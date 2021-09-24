@@ -30,7 +30,7 @@ public class LocationUtils {
      */
 
     public boolean isCloseToGround(Location location) {
-        double distanceToGround = 0.4201;
+        double distanceToGround = 0.3D;
         for (double locX = -distanceToGround; locX <= distanceToGround; locX += distanceToGround) {
             for (double locZ = -distanceToGround; locZ <= distanceToGround; locZ += distanceToGround) {
                 if (location.clone().add(0, -0.5001, 0).getBlock().getType() == Material.AIR) {

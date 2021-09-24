@@ -19,15 +19,21 @@ checks:
       b:
         enabled: true
         max-vl: 10
-        buffer: 4
+        buffer: 3
         punish: false
     step:
       a:
         enabled: true
         max-vl: 10
-        buffer: 2
+        buffer: 0
         punish: false
     speed:
+      a:
+        enabled: true
+        max-vl: 10
+        buffer: 1
+        punish: false
+    nofall:
       a:
         enabled: true
         max-vl: 10

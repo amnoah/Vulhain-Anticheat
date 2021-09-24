@@ -26,9 +26,9 @@ public class AimA extends Check {
             final double accelYaw = Math.abs(deltaYaw - lastDeltaYaw);
             final double accelPitch = Math.abs(deltaPitch - lastDeltaPitch);
 
-            final boolean exempt = deltaYaw < 5.0D;
+            final boolean exempt = deltaYaw < 5.0D ;
 
-            if((accelPitch <= 0.001D || accelYaw <= 0.001D) && !exempt) {
+            if((accelPitch <= 0.001D || accelYaw <= 0.0001D) && !exempt) {
                 if(++buffer > getMaxBuffer()) {
                     flag(playerData,"too small accel");
                 }

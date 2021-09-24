@@ -11,6 +11,7 @@ import me.salers.vulhain.check.impl.combat.killaura.KillauraB;
 import me.salers.vulhain.check.impl.movement.fly.FlyA;
 import me.salers.vulhain.check.impl.movement.fly.FlyB;
 import me.salers.vulhain.check.impl.movement.fly.FlyC;
+import me.salers.vulhain.check.impl.movement.nofall.NoFallA;
 import me.salers.vulhain.check.impl.movement.speed.SpeedA;
 import me.salers.vulhain.check.impl.movement.step.StepA;
 import me.salers.vulhain.data.PlayerData;
@@ -38,6 +39,8 @@ public class CheckManager {
 
                 new StepA("Step","movement","A",false),
                 new SpeedA("Speed","movement","A",false),
+
+                new NoFallA("NoFall","movement","A",false),
 
                 new FlyA("Fly", "movement", "A", true),
                 new FlyB("Fly", "movement", "B", false),
