@@ -5,6 +5,7 @@ import lombok.Getter;
 import me.salers.vulhain.check.Check;
 import me.salers.vulhain.check.impl.combat.aim.AimA;
 import me.salers.vulhain.check.impl.combat.aim.AimB;
+import me.salers.vulhain.check.impl.combat.aim.AimC;
 import me.salers.vulhain.check.impl.combat.killaura.KillauraA;
 import me.salers.vulhain.check.impl.combat.killaura.KillauraB;
 import me.salers.vulhain.check.impl.movement.fly.FlyA;
@@ -30,6 +31,7 @@ public class CheckManager {
 
                 new AimA("Aim","combat","A",false),
                 new AimB("Aim","combat","B",false),
+                new AimC("Aim","combat","C",false),
 
                 new KillauraA("Killaura","combat","A",false),
                 new KillauraB("Killaura","combat","B",false),

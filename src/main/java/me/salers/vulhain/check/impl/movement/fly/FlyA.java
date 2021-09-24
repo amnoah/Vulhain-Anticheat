@@ -25,7 +25,7 @@ public class FlyA extends Check {
             final double gravity = 0.08F;
 
             final double prediction = (lastDeltaY * airDrag) - gravity;
-            final double fixedPrediction = Math.abs(prediction) < 0.005 ? 0 : Math.abs(prediction);
+            final double fixedPrediction = Math.abs(prediction) < 0.005 ? 0 : prediction /** 09/24/21 -> fixed a dumb thing ty to spiriten**/;
 
             final double difference = Math.abs(deltaY - fixedPrediction);
 

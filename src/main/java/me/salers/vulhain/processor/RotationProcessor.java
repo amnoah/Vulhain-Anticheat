@@ -21,15 +21,16 @@ public class RotationProcessor {
     }
 
     public void handleRotation(WrappedPacketInFlying wrapper) {
-        /* Getting yaw one tick ago */
-        lastYaw = yaw;
-        yaw = wrapper.getYaw() % 360;
-        deltaYaw = Math.abs(yaw - lastYaw) % 360;
+        this.yaw = wrapper.getYaw();
+        this.pitch = wrapper.getPitch();
 
-        /* Getting pitch one tick ago */
-        lastPitch = pitch;
-        pitch = wrapper.getPitch();
+        deltaYaw = Math.abs(yaw - lastYaw);
         deltaPitch = Math.abs(pitch - lastPitch);
 
+        lastYaw = yaw;
+        lastPitch = pitch;
+
+        lastDeltaYaw = deltaYaw;
+        lastDeltaPitch = deltaPitch;
     }
 }

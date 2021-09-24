@@ -7,6 +7,8 @@ import java.util.Collection;
 @UtilityClass
 public class MathUtils {
 
+    public final double EXPANDER = Math.pow(2, 24);
+
     /**
      * Credits to Gaetan
      **/
@@ -45,4 +47,17 @@ public class MathUtils {
 
         return variance;
     }
+
+    // Taken from https://github.com/ElevatedDev/Frequency
+
+    /**
+     * @param current  - The current value
+     * @param previous - The previous value
+     * @return - The GCD of those two values
+     */
+    public double gcd(final double limit, final double a, final double b) {
+        return b <= limit ? a : MathUtils.gcd(limit, b, a % b);
+    }
+
+
 }

@@ -56,3 +56,8 @@ checks:
         max-vl: 10
         buffer: 4
         punish: false
+      c:
+        enabled: true
+        max-vl: 10
+        buffer: 6
+        punish: false
